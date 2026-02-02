@@ -1,6 +1,18 @@
-# Added-Typos Skill (v2 - Zerobytes Enhanced)
+# Added-Typos Skill (v2 - Zerobytes Deterministic)
 
 A Claude skill for transforming sterile AI-generated text into authentically human-typed output using **deterministic seed-based typo generation**.
+
+## ⚠️ Critical: Script Execution Required
+
+**Determinism requires executing `apply_typos.py` directly.** Claude must NOT attempt to "mentally implement" the algorithm—that breaks reproducibility.
+
+```bash
+# CORRECT: Execute the script
+python scripts/apply_typos.py input.txt --seed 42
+
+# WRONG: Claude trying to apply typos mentally
+# (This produces different results each time)
+```
 
 ## What's New in v2
 
@@ -104,18 +116,26 @@ Independent control over WHERE typos occur vs WHAT typos occur.
 
 ## Determinism Demonstration
 
-```python
-# Run 1
-apply_typos("The quick brown fox", seed=42)
-# Output: "Teh quikc brown fox"
+**Verified: 10 consecutive runs with seed 42 produce IDENTICAL output:**
 
-# Run 2 (same seed)
-apply_typos("The quick brown fox", seed=42)
-# Output: "Teh quikc brown fox"  ← IDENTICAL
+```
+=== Run 1-10 (seed 42) ===
+i did not "embed a video"
+that is autpmatic
+tthe link leas to the viewing page
+umg set the polocy
+this ddisables viewing embedding links
+the automatic feature is called "Rich presence"
 
-# Run 3 (different seed)
-apply_typos("The quick brown fox", seed=43)
-# Output: "The qiuck brwon fox"  ← Different
+✓ DETERMINISTIC: 10 runs produced identical output
+```
+
+**Different seeds produce different (but consistent) patterns:**
+
+```
+Seed 42:  "autpmatic", "tthe link leas", "polocy", "ddisables"
+Seed 43:  "ii did", "teh policy", "risables", "calldd"  
+Seed 12345: "tht is", "tthe policy", "dasbles", "emeding", "automaticc"
 ```
 
 ## Command Line Usage
