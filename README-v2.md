@@ -271,7 +271,7 @@ If you use this codebase in your research or project, please cite:
   title = {Added-Typos Skill: Deterministic Human Typing Error Simulation for Claude},
   author = {Drift Johnson},
   year = {2025},
-  url = {https://github.com/MushroomFleet/added-typos-skill},
+  url = {https://github.com/MushroomFleet/deterministic-typos-skill},
   version = {2.0.0}
 }
 ```
